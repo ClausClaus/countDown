@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        (function() {
+            var myDate = new Date();//使用场景：${weekDay[myDate.getDay()]}
+            var weekDay = [];
+            /*调用split()数组方法将一个字符串以指定的分隔符分隔成多个子字符串，
+            返回一个新数组并调用forEach遍历数组中的每一个值做对应的操作。
+            forEach没有返回值，写return的话可能会使代码的执行中断*/
+            "星期日 星期一 星期二 星期三 星期四 星期五 星期六".split(' ').forEach(function (v) {
+                weekDay.push(v);
+            });
+            /*新数组调用map方法遍历数组中每一值组对应的操作。
+            * 对数组的每个值使用eval()函数执行对应年份日期的拼接
+            * 判断是否需要在日期前面加0并且返回*/
+            var arr = "getFullYear() getMonth() getDate() getHours() getMinutes() getSeconds()".split(' ').map(function (v) {
+                var time = eval("myDate." + v);
+                return time < 10? "0" + time : time;
+            });
+            /*ES6新增的字符串拼接方式，${}里面写的是变量*/
+            document.body.innerHTML = `${arr[0]}年 ${arr[1]}月 ${arr[2]}日
+                                       ${weekDay[myDate.getDay()]} ${arr[3]}:${arr[4]}:${arr[5]}`;
+            setTimeout(arguments.callee, 1000);//当前正在执行的函数，每1秒执行一次
+        })()
+    }
+</script>
+</body>
+</html>

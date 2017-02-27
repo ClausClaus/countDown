@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>剩余时间<span></span></div>
+<script>
+    window.onload = function () {
+        showTime();
+        function showTime() {
+            var endTime = new Date("2017,4,11");
+            var curTime = new Date();
+            var lastTime = parseInt((endTime.getTime() - curTime.getTime()) / 1000);
+            var day = parseInt(lastTime / (24 * 60 * 60)); //剩余多少天
+            var hour = parseInt(lastTime / (60 * 60) % 24);//当前剩余多少小时
+            var month = parseInt(lastTime / 60 % 60);//当前剩余多少分
+            var second = parseInt(lastTime % 60);//当前剩余多少秒
+            document.querySelector("span").innerHTML = day + "天" + hour + "时" + month + "分" + second + "秒";
+            setTimeout(showTime, 500);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>距离毕业还有 <span></span>天</div>
+<script>
+    window.onload = function () {
+        var curTime = new Date();
+        var endTime = new Date("2017,4,11");
+        var lastTime = Math.ceil((endTime.getTime() - curTime.getTime())/(24 * 60 *60 * 1000));
+        document.querySelector("span").innerHTML = lastTime;
+    }
+</script>
+</body>
+</html>
